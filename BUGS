@@ -3,6 +3,7 @@
 -----------------------------------
 Bugs:
 	-The steering don't work; When you press a button, then press another, then release the secound button the character stops.
+	-The character can walk out on the bottom of the screen
 	
 Fixed Bugs:
 	
