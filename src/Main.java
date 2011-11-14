@@ -12,9 +12,12 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 	public boolean right = false;
 	public boolean up = false;
 	public boolean down = false;
+	public static boolean debug = false;
+	public static String dstring = "[DEBUG]\n";
 
 	
 	public static void main(String[] args){	//Her starter programmet
+		dstring += "[Main] starting game\n";
 		Image[] up = {new ImageIcon(Main.class.getResource("images/machgu1.png")).getImage(),	//
 				new ImageIcon(Main.class.getResource("images/machgu2.png")).getImage(),			//Dette lagerer bildene for Busthus' sprite opp
 				new ImageIcon(Main.class.getResource("images/machgu1.png")).getImage(),			//
@@ -35,19 +38,25 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 				new ImageIcon(Main.class.getResource("images/machgr1.png")).getImage(),			//
 				new ImageIcon(Main.class.getResource("images/machgr3.png")).getImage()};			//
 		Busthus = new Character("Busthus",right,left,up,down,200,200,0.08f,0.0f,-0.08f,0.0f,0.0f,-0.08f,0.0f,0.08f,"Left");//Dette lagrer alle spritene til Busthus i et eget objekt
+		dstring += "[Main] Loaded Character(Busthus)\n";
 		
 		l1 = new Level1();			//Leser klassen Level1
 		l1.run();			//kjører run() i l1
+		dstring += "[Main] game should be started\n";
 	}
 
 	
 	//keypressed
 	public void keyPressed(KeyEvent e){
 		int keyCode = e.getKeyCode();	//Finner ut hvilken knapp som ble trykket
+		dstring += "[Main] a button has been pushed\n";
 		
 		//Dette er ikke så vanskelig. den finner ut hvilken knapp det er og gjør ting deretter
 		if(keyCode == KeyEvent.VK_ESCAPE){
+			dstring += "[Main] it was escape\n";
+			dstring += "[Main] stopping game\n";
 			l1.stop();	//Stopper level1
+			dstring += "[Main] game should be stopped\n";
 		}else if(keyCode == KeyEvent.VK_D){
 			Busthus.setImage("right");//sier at det er right/høyre som er den gjeldende veien Busthus går
 			Busthus.setMoving(true);//Sier at Busthus er i bevegelse
