@@ -45,11 +45,6 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 			Main.Busthus.setMoving(false);													//
 			m.down = false;																	//
 		}																					//
-		
-		if(Main.h.containsPoint(Main.Busthus.getX(), Main.Busthus.getY())){
-			Main.Busthus.setMoving(false);
-		}
-		
 		if(Main.Busthus.getMoving()){														//
 			Main.Busthus.update(timePassed);												//
 		}																					//
