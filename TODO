@@ -1,0 +1,27 @@
+-----------------------------------
+|The adventures of Busthus ** TODO|
+-----------------------------------
+
+PROGRAMING:
+	-Make a small launcher:
+		*Debugoption
+	-Make houses that you stp when you hit
+	-Make enemies
+	-Make an attack
+	-Make a "map" cosisting of 9 screens/windows
+	-Make a animtion on start- an intro
+	-Fix up bugs(see BUGS)
+SPRITING:
+	-Make enemies
+		*Busthus' mom
+	-Make the background
+	-make menus:
+		*launcher
+		*pause
+		*mainmenu
+
+DONE:
+	-Make a own class for every character
+	-Make so the character not can go outside the screen
+	-Fix the steering
+
