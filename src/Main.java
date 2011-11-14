@@ -12,8 +12,11 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 	public boolean right = false;
 	public boolean up = false;
 	public boolean down = false;
+<<<<<<< HEAD
 	public static boolean debug = false;
 	public static String dstring = "[DEBUG]\n";
+=======
+>>>>>>> 6070ab41f195293913227bce94007ea99d4a0659
 
 	
 	public static void main(String[] args){	//Her starter programmet
