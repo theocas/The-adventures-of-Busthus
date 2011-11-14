@@ -12,7 +12,6 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 	public boolean right = false;
 	public boolean up = false;
 	public boolean down = false;
-	public static House h;
 
 	
 	public static void main(String[] args){	//Her starter programmet
@@ -37,9 +36,6 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 				new ImageIcon(Main.class.getResource("images/machgr3.png")).getImage()};			//
 		Busthus = new Character("Busthus",right,left,up,down,200,200,0.08f,0.0f,-0.08f,0.0f,0.0f,-0.08f,0.0f,0.08f,"Left");//Dette lagrer alle spritene til Busthus i et eget objekt
 		
-		int[] hx={300,300,300,300,300,300,300,300,300,300,300,  310,320,330,340,350,360,370,380,390,400,   400,400,400,400,400,400,400,400,400,400,   310,320,330,340,350,360,370,380,390,400};
-		int[] hy={300,310,320,330,340,350,360,370,380,390,400,  300,300,300,300,300,300,300,300,300,300,   310,320,330,340,350,360,370,380,390,400,   400,400,400,400,400,400,400,400,400,400};
-		h = new House(hx,hy);
 		l1 = new Level1();			//Leser klassen Level1
 		l1.run();			//kjører run() i l1
 	}
