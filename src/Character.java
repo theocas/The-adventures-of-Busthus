@@ -51,7 +51,6 @@ public class Character {
 		this.iu = au[0];					//
 		this.id = ad[0];					//
 		
-		//TODO softcode(bruke multidimensional array)
 		this.ar = new Animation();
 		for(int counter=0; counter<ar.length; counter++){
 			this.ar.addScene(ar[counter], 250);
