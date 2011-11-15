@@ -21,7 +21,7 @@ SPRITING:
 		*mainmenu
 
 DONE:
-	-Make a own class for every character
-	-Make so the character not can go outside the screen
-	-Fix the steering
+	-Made an own class for every character
+	-Made so the character not can go outside the screen, but he will later in the game
+	-Fixed the steering
 
