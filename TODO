@@ -4,14 +4,13 @@
 
 PROGRAMMING:
 	-Make a small launcher:
-		*Debugoption
+		*Debug option
 	-Make houses that you can walk into by moving busthus to the front door
-	-Make enemies
 	-Make an attack
 	-Make a "map" consisting 3 islands, all in different sizes but the smallest (spawn point) is going to consist of 9 screens/windows
 	-Make a animtion on start- and intro
 	-Fix bugs(see BUGS)
-	-Add github
+
 SPRITING:
 	-Draw enemies
 		*Busthus' mom/sister or whatever you are supposed to save
@@ -25,4 +24,5 @@ DONE:
 	-Made an own class for every character
 	-Made so the character not can go outside the screen, but he will later in the game
 	-Fixed the steering
+	-Make enemies
 
