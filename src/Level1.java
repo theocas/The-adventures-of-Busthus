@@ -61,4 +61,29 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 		
 	}
 	
+	public String follow(Character c, int FX,int FY){
+		int X = FX - c.getX();
+		int Y = FY - c.getY();
+		String direction;
+		
+		if(X>Y){
+			direction = "LR";
+		}else{
+			direction = "UD";
+		}
+		if(direction=="LR"){
+			if(FX>c.getX()){
+				return "Right";
+			}else{
+				return "Left";
+			}
+		}else{
+			if(FY>c.getY()){
+				return "Down";
+			}else{
+				return "Up";
+			}
+		}
+	}
+	
 }
