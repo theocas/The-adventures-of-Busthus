@@ -30,20 +30,25 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 	//update the animation
 	public void update(long timePassed){
 		
-		Rectangle bu = new Rectangle();
-		bu.add(Main.Busthus.getX(), Main.Busthus.getY());
-		bu.add(Main.Busthus.getX() + Main.Busthus.getWidth(), Main.Busthus.getY());
-		bu.add(Main.Busthus.getX() + Main.Busthus.getWidth(), Main.Busthus.getY() +  Main.Busthus.getHeight());
-		bu.add(Main.Busthus.getX(), Main.Busthus.getY() +  Main.Busthus.getHeight());
+		Rectangle bu = new Rectangle(Main.Busthus.getX(),Main.Busthus.getY(),Main.Busthus.getWidth(),Main.Busthus.getHeight());
+		Rectangle ma = new Rectangle(Main.Maeng.getX(), Main.Maeng.getY(),Main.Maeng.getWidth(),Main.Maeng.getHeight());
 		
-		Rectangle ma = new Rectangle();
-		bu.add(Main.Maeng.getX(), Main.Maeng.getY());
-		bu.add(Main.Maeng.getX() + Main.Maeng.getWidth(), Main.Maeng.getY());
-		bu.add(Main.Maeng.getX() + Main.Maeng.getWidth(), Main.Maeng.getY() +  Main.Maeng.getHeight());
-		bu.add(Main.Maeng.getX(), Main.Maeng.getY() +  Main.Maeng.getHeight());
-		
-		if(bu.intersects(ma)){
+		if(ma.intersects(bu)){
 			Main.Busthus.setMoving(false);
+			int X;
+			int Y;
+			if(Main.Maeng.getX()>Main.Busthus.getX() && !m.left){
+				X = Main.Maeng.getX() - Main.Busthus.getX();
+			}else{
+				X = Main.Busthus.getX() - Main.Maeng.getX();
+			}
+			/*
+			if(FY>c.getY()){
+				Y = FY - c.getY();
+			}else{
+				Y = c.getY() - FY;
+			}
+			*/
 			m.right = false;
 			m.left = false;
 			m.up = false;
