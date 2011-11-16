@@ -8,6 +8,7 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 	static Level1 l1;	//l1==Level1(en classe)
 	public static String version = "The adventures of Busthus version: Alpha 1";
 	public static Character Busthus;
+	public static Character Maeng;
 	public boolean left = false;
 	public boolean right = false;
 	public boolean up = false;
@@ -39,6 +40,10 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 				new ImageIcon(Main.class.getResource("images/machgr3.png")).getImage()};			//
 		Busthus = new Character("Busthus",right,left,up,down,200,200,0.08f,0.0f,-0.08f,0.0f,0.0f,-0.08f,0.0f,0.08f,"Left");//Dette lagrer alle spritene til Busthus i et eget objekt
 		dstring += "[Main] Loaded Character(Busthus)\n";
+		
+		Image[] maengmove = {new ImageIcon(Main.class.getResource("images/maeng1.png")).getImage(),new ImageIcon(Main.class.getResource("images/maeng2.png")).getImage()};
+		Maeng = new Character("Maeng",maengmove,maengmove,maengmove,maengmove,500,500,0.05f,0.0f,-0.05f,0.0f,0.0f,-0.05f,0.0f,0.05f,"Left");
+		dstring += "[Main] Loaded Character(Maeng)\n";
 		
 		l1 = new Level1();			//Leser klassen Level1
 		l1.run();			//kjører run() i l1

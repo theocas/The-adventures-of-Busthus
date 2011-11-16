@@ -48,6 +48,12 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 		if(Main.Busthus.getMoving()){														//
 			Main.Busthus.update(timePassed);												//
 		}																					//
+		String dir;
+		dir = follow(Main.Maeng,Main.Busthus.getX(),Main.Busthus.getY());
+		if(dir != null){
+			Main.Maeng.setImage(dir);
+			Main.Maeng.update(timePassed);
+		}
 		
 		
 	}
@@ -56,6 +62,7 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 		g.clearRect(0, 0, 1000, 1000);																					//
 		g.drawImage(bg,0,0,null);																						//Dette gjør først hele skjermen "blank" så tegner den bakrunden, så tegner den Busthus
 		g.drawImage(Main.Busthus.getImage(), Math.round(Main.Busthus.getX()), Math.round(Main.Busthus.getY()), null);	//
+		g.drawImage(Main.Maeng.getImage(), Math.round(Main.Maeng.getX()), Math.round(Main.Maeng.getY()), null);			//
 		g.drawString(Main.version, 10, 20);																				//
 		g.dispose();																									//
 		
@@ -67,26 +74,22 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 	public String follow(Character c, int FX,int FY){
 		int X = FX - c.getX();
 		int Y = FY - c.getY();
-		String direction;
+		String direction = null;
 		
 		if(X>Y){
-			direction = "LR";
-		}else{
-			direction = "UD";
-		}
-		if(direction=="LR"){
 			if(FX>c.getX()){
-				return "Right";
-			}else{
-				return "Left";
+				direction = "Left";
+			}else if(FX<c.getX()){
+				direction = "Right";
 			}
-		}else{
+		}else if(Y>X){
 			if(FY>c.getY()){
-				return "Down";
-			}else{
-				return "Up";
+				direction = "Down";
+			}else if(FY<c.getY()){
+				direction = "Up";
 			}
 		}
+		return direction;
 	}
 	
 	
