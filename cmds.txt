@@ -2,6 +2,7 @@
 cd the-adventures-of-busthus
 git init
 git fetch origin
+git pull
 
 Hvis du legger til en fil:
 git add 'FILBANE EKS: src/images/image'
