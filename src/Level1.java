@@ -61,6 +61,9 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 		
 	}
 	
+	/*
+	 * 
+	 */
 	public String follow(Character c, int FX,int FY){
 		int X = FX - c.getX();
 		int Y = FY - c.getY();
