@@ -70,7 +70,7 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 	}
 	
 	/*
-	 * To get the direction to go by the cordinates to go to
+	 * To get the direction to go by the coordinates to go to
 	 */
 	public String follow(Character c, int FX,int FY){
 		int X;
