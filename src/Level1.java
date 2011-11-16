@@ -1,5 +1,6 @@
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.Window;
 
 import javax.swing.ImageIcon;
@@ -28,6 +29,27 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 	
 	//update the animation
 	public void update(long timePassed){
+		
+		Rectangle bu = new Rectangle();
+		bu.add(Main.Busthus.getX(), Main.Busthus.getY());
+		bu.add(Main.Busthus.getX() + Main.Busthus.getWidth(), Main.Busthus.getY());
+		bu.add(Main.Busthus.getX() + Main.Busthus.getWidth(), Main.Busthus.getY() +  Main.Busthus.getHeight());
+		bu.add(Main.Busthus.getX(), Main.Busthus.getY() +  Main.Busthus.getHeight());
+		
+		Rectangle ma = new Rectangle();
+		bu.add(Main.Maeng.getX(), Main.Maeng.getY());
+		bu.add(Main.Maeng.getX() + Main.Maeng.getWidth(), Main.Maeng.getY());
+		bu.add(Main.Maeng.getX() + Main.Maeng.getWidth(), Main.Maeng.getY() +  Main.Maeng.getHeight());
+		bu.add(Main.Maeng.getX(), Main.Maeng.getY() +  Main.Maeng.getHeight());
+		
+		if(bu.intersects(ma)){
+			Main.Busthus.setMoving(false);
+			m.right = false;
+			m.left = false;
+			m.up = false;
+			m.down = false;
+			return;
+		}
 		
 		if(Main.Busthus.getX() + Main.Busthus.getWidth()+1 >= s.getWidth() && m.right){		//
 			Main.Busthus.setMoving(false);													//
@@ -62,9 +84,9 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 	public void draw(Graphics2D g) {
 		g.clearRect(0, 0, 1000, 1000);																					//
 		g.drawImage(bg,0,0,null);																						//Dette gjør først hele skjermen "blank" så tegner den bakrunden, så tegner den Busthus
-		g.drawImage(Main.Busthus.getImage(), Math.round(Main.Busthus.getX()), Math.round(Main.Busthus.getY()), null);	//
 		g.drawImage(Main.Maeng.getImage(), Math.round(Main.Maeng.getX()), Math.round(Main.Maeng.getY()), null);			//
-		g.drawString(Main.version, 10, 20);																				//
+		g.drawImage(Main.Busthus.getImage(), Math.round(Main.Busthus.getX()), Math.round(Main.Busthus.getY()), null);	//
+		g.drawString(Main.version + "  Screen: " + s.getWidth() + " x " + s.getHeight(), 10, 20);																				//
 		g.dispose();																									//
 		
 	}
