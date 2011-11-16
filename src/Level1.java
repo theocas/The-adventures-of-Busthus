@@ -62,7 +62,7 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 	}
 	
 	/*
-	 * 
+	 * To get the direction to go by the corinates to go to
 	 */
 	public String follow(Character c, int FX,int FY){
 		int X = FX - c.getX();
