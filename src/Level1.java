@@ -48,6 +48,7 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 		if(Main.Busthus.getMoving()){														//
 			Main.Busthus.update(timePassed);												//
 		}																					//
+		
 		String dir;
 		dir = follow(Main.Maeng,Main.Busthus.getX(),Main.Busthus.getY());
 		if(dir != null){
@@ -72,15 +73,25 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 	 * To get the direction to go by the cordinates to go to
 	 */
 	public String follow(Character c, int FX,int FY){
-		int X = FX - c.getX();
-		int Y = FY - c.getY();
+		int X;
+		int Y;
+		if(FX>c.getX()){
+			X = FX - c.getX();
+		}else{
+			X = c.getX() - FX;
+		}
+		if(FY>c.getY()){
+			Y = FY - c.getY();
+		}else{
+			Y = c.getY() - FY;
+		}
 		String direction = null;
 		
 		if(X>Y){
 			if(FX>c.getX()){
-				direction = "Left";
-			}else if(FX<c.getX()){
 				direction = "Right";
+			}else if(FX<c.getX()){
+				direction = "Left";
 			}
 		}else if(Y>X){
 			if(FY>c.getY()){
