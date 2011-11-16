@@ -51,42 +51,25 @@ public class Character {
 		this.iu = au[0];					//
 		this.id = ad[0];					//
 		
-		//TODO softcode(bruke multidimensional array)
 		this.ar = new Animation();
-		this.ar.addScene(ar[0], 250);
-		this.ar.addScene(ar[1], 250);
-		this.ar.addScene(ar[2], 250);
-		this.ar.addScene(ar[3], 250);
-		//for(int X=0;x>=ar.length-1;x++){
-		//	this.ar.addScene(ar[X], 250);
-		//}
+		for(int counter=0; counter<ar.length; counter++){
+			this.ar.addScene(ar[counter], 250);
+		}
 		
 		this.al = new Animation();
-		this.al.addScene(al[0], 250);
-		this.al.addScene(al[1], 250);
-		this.al.addScene(al[2], 250);
-		this.al.addScene(al[3], 250);
-		//for(int X=0;x>=al.length-1;x++){
-		//	this.al.addScene(al[X], 250);
-		//}
+		for(int count=0; count<al.length; count++){
+			this.al.addScene(al[count], 250);
+		}
 		
 		this.au = new Animation();
-		this.au.addScene(au[0], 250);
-		this.au.addScene(au[1], 250);
-		this.au.addScene(au[2], 250);
-		this.au.addScene(au[3], 250);
-		//for(int X=0;x>=au.length-1;x++){
-		//	this.au.addScene(au[X], 250);
-		//}
+		for(int counter=0; counter<au.length; counter++){
+			this.au.addScene(au[counter], 250);
+		}
 		
 		this.ad = new Animation();
-		this.ad.addScene(ad[0], 250);
-		this.ad.addScene(ad[1], 250);
-		this.ad.addScene(ad[2], 250);
-		this.ad.addScene(ad[3], 250);
-		//for(int X=0;x>=ad.length-1;x++){
-		//	this.ad.addScene(ad[X], 250);
-		//}
+		for(int counter=0; counter<ad.length; counter++){
+			this.ad.addScene(ad[counter], 250);
+		}
 		
 		sr = new Sprite(this.ar);
 		sr.setVelocityX(this.vxr);
