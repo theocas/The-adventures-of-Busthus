@@ -5,34 +5,36 @@ import java.awt.Image;
 
 public class Character {
 	
-	String name;			//
-	String currentimage;	//
-	Image ir;				//
-	Image il;				//
-	Image iu;				//
-	Image id;				//
-	Animation ar;			//
-	Animation al;			//
-	Animation au;			//
-	Animation ad;			//
-	Sprite sr;				//
-	Sprite sl;				//Dette sier seg vel selv?
-	Sprite su;				//
-	Sprite sd;				//
-	double x;				//
-	double y;				//
-	float vxr;				//
-	float vyr;				//
-	float vxl;				//
-	float vyl;				//
-	float vxu;				//
-	float vyu;				//
-	float vxd;				//
-	float vyd;				//
-	Boolean moving = false;	//
+	String name;					//
+	String currentimage;			//
+	Image ir;						//
+	Image il;						//
+	Image iu;						//
+	Image id;						//
+	Animation ar;					//
+	Animation al;					//
+	Animation au;					//
+	Animation ad;					//
+	Sprite sr;						//
+	Sprite sl;						//Dette sier seg vel selv?
+	Sprite su;						//
+	Sprite sd;						//
+	double x;						//
+	double y;						//
+	float vxr;						//
+	float vyr;						//
+	float vxl;						//
+	float vyl;						//
+	float vxu;						//
+	float vyu;						//
+	float vxd;						//
+	float vyd;						//
+	Boolean moving = false;			//
+	int lives;						//
+	boolean losingHealt = false;	//
 	
 	
-	public Character(String name, Image[] ar, Image[] al, Image[] au, Image[] ad, double x, double y, float vxr, float vyr, float vxl, float vyl, float vxu, float vyu, float vxd, float vyd, String currentimage){
+	public Character(String name, Image[] ar, Image[] al, Image[] au, Image[] ad, double x, double y, float vxr, float vyr, float vxl, float vyl, float vxu, float vyu, float vxd, float vyd, String currentimage, int lives){
 		
 		this.name = name;					//
 		this.currentimage = currentimage;	//
@@ -50,6 +52,7 @@ public class Character {
 		this.il = al[0];					//
 		this.iu = au[0];					//
 		this.id = ad[0];					//
+		this.lives = lives;					//
 		
 		this.ar = new Animation();
 		for(int counter=0; counter<ar.length; counter++){
@@ -220,6 +223,10 @@ public class Character {
 	}
 	public boolean getMoving(){
 		return moving;
+	}
+	
+	public void loseHealt(int lose){
+		this.lives = this.lives - lose;
 	}
 	
 }

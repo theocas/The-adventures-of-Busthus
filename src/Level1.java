@@ -37,23 +37,31 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 			Main.Busthus.setMoving(false);
 			int X;
 			int Y;
-			if(Main.Maeng.getX()>Main.Busthus.getX() && !m.left){
-				X = Main.Maeng.getX() - Main.Busthus.getX();
-			}else{
-				X = Main.Busthus.getX() - Main.Maeng.getX();
+			if(Main.Maeng.getX()>=Main.Busthus.getX() && Main.Maeng.getY()>=Main.Busthus.getY()){
+				if(!m.up || !m.left){
+					m.down = false;
+					m.right = false;
+					return;
+				}
+			}else if(Main.Busthus.getX()>=Main.Maeng.getX() && Main.Busthus.getY()>=Main.Maeng.getY()){
+				if(!m.down || !m.right){
+					m.up = false;
+					m.left = false;
+					return;
+				}
+			}else if(Main.Maeng.getX()>=Main.Busthus.getX() && Main.Busthus.getY()>=Main.Maeng.getY()){
+				if(!m.left || !m.down){
+					m.right = false;
+					m.up = false;
+					return;
+				}
+			}else if(Main.Busthus.getX()>=Main.Maeng.getX() && Main.Maeng.getY()>=Main.Busthus.getY()){
+				if(!m.right || !m.up){
+					m.left = false;
+					m.down = false;
+					return;
+				}
 			}
-			/*
-			if(FY>c.getY()){
-				Y = FY - c.getY();
-			}else{
-				Y = c.getY() - FY;
-			}
-			*/
-			m.right = false;
-			m.left = false;
-			m.up = false;
-			m.down = false;
-			return;
 		}
 		
 		if(Main.Busthus.getX() + Main.Busthus.getWidth()+1 >= s.getWidth() && m.right){		//
