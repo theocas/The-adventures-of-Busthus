@@ -74,18 +74,18 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 		g.drawImage(Main.Busthus.getImage(), Math.round(Main.Busthus.getX()), Math.round(Main.Busthus.getY()), null);	//
 		if(Main.Busthus.getHealt() == 6){
 			g.drawImage(Main.wheart, 10, 30, null);
-			g.drawImage(Main.wheart, 30, 30, null);
-			g.drawImage(Main.wheart, 50, 30, null);
+			g.drawImage(Main.wheart, 26, 30, null);
+			g.drawImage(Main.wheart, 42, 30, null);
 		}else if(Main.Busthus.getHealt() == 5){
 			g.drawImage(Main.wheart, 10, 30, null);
-			g.drawImage(Main.wheart, 30, 30, null);
-			g.drawImage(Main.hheart, 50, 30, null);
+			g.drawImage(Main.wheart, 26, 30, null);
+			g.drawImage(Main.hheart, 42, 30, null);
 		}else if(Main.Busthus.getHealt() == 4){
 			g.drawImage(Main.wheart, 10, 30, null);
-			g.drawImage(Main.wheart, 30, 30, null);
+			g.drawImage(Main.wheart, 26, 30, null);
 		}else if(Main.Busthus.getHealt() == 3){
 			g.drawImage(Main.wheart, 10, 30, null);
-			g.drawImage(Main.hheart, 30, 30, null);
+			g.drawImage(Main.hheart, 26, 30, null);
 		}else if(Main.Busthus.getHealt() == 2){
 			g.drawImage(Main.wheart, 10, 30, null);
 		}else if(Main.Busthus.getHealt() == 1){
