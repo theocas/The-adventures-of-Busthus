@@ -32,6 +32,8 @@ public class Character {
 	Boolean moving = false;			//
 	int lives;						//
 	boolean losingHealt = false;	//
+	boolean dead = false;			//
+	long deadtime = 0;
 	
 	
 	public Character(String name, Image[] ar, Image[] al, Image[] au, Image[] ad, double x, double y, float vxr, float vyr, float vxl, float vyl, float vxu, float vyu, float vxd, float vyd, String currentimage, int lives){
@@ -186,6 +188,9 @@ public class Character {
 	}
 	
 	public void update(long timePassed){
+		if(this.dead){
+			return;
+		}
 		if(currentimage == "Left"){
 			sl.update(timePassed);
 			this.x = sl.getX();
@@ -225,8 +230,24 @@ public class Character {
 		return moving;
 	}
 	
-	public void loseHealt(int lose){
-		this.lives = this.lives - lose;
+	public void loseHealt(int lose, long time){
+		if(time-this.deadtime>5000){
+			this.lives = this.lives - lose;
+			if(this.lives <= 0){
+				this.dead = true;
+			}
+			this.deadtime = time;
+		}
+	}
+	public void gainHealt(int gain){
+		this.lives += gain;
+	}
+	public int getHealt(){
+		return this.lives;
+	}
+	
+	public void updateHealt(double x){
+		
 	}
 	
 }

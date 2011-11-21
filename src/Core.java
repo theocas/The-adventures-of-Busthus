@@ -45,11 +45,13 @@ public abstract class Core {
 	public void gameLoop(){
 		long startTime = System.currentTimeMillis();
 		long cumTime = startTime;
+		long currtime = System.currentTimeMillis();
 		
 		while(running){
 			long timePassed = System.currentTimeMillis() - cumTime;
+			currtime = System.currentTimeMillis();
 			cumTime +=timePassed;
-			update(timePassed);
+			update(timePassed, currtime);
 			
 			Graphics2D g = s.getGraphics();
 			draw(g);
@@ -63,7 +65,7 @@ public abstract class Core {
 	}
 	
 	//update the animation
-	public void update(long timePassed){}
+	public void update(long timePassed, long currtime){}
 	
 	//draws to the screen
 	public abstract void draw(Graphics2D g);

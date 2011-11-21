@@ -28,40 +28,13 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 	}
 	
 	//update the animation
-	public void update(long timePassed){
+	public void update(long timePassed, long currtime){
 		
 		Rectangle bu = new Rectangle(Main.Busthus.getX(),Main.Busthus.getY(),Main.Busthus.getWidth(),Main.Busthus.getHeight());
 		Rectangle ma = new Rectangle(Main.Maeng.getX(), Main.Maeng.getY(),Main.Maeng.getWidth(),Main.Maeng.getHeight());
 		
 		if(ma.intersects(bu)){
-			Main.Busthus.setMoving(false);
-			int X;
-			int Y;
-			if(Main.Maeng.getX()>=Main.Busthus.getX() && Main.Maeng.getY()>=Main.Busthus.getY()){
-				if(!m.up || !m.left){
-					m.down = false;
-					m.right = false;
-					return;
-				}
-			}else if(Main.Busthus.getX()>=Main.Maeng.getX() && Main.Busthus.getY()>=Main.Maeng.getY()){
-				if(!m.down || !m.right){
-					m.up = false;
-					m.left = false;
-					return;
-				}
-			}else if(Main.Maeng.getX()>=Main.Busthus.getX() && Main.Busthus.getY()>=Main.Maeng.getY()){
-				if(!m.left || !m.down){
-					m.right = false;
-					m.up = false;
-					return;
-				}
-			}else if(Main.Busthus.getX()>=Main.Maeng.getX() && Main.Maeng.getY()>=Main.Busthus.getY()){
-				if(!m.right || !m.up){
-					m.left = false;
-					m.down = false;
-					return;
-				}
-			}
+			Main.Busthus.loseHealt(1, currtime);
 		}
 		
 		if(Main.Busthus.getX() + Main.Busthus.getWidth()+1 >= s.getWidth() && m.right){		//
@@ -99,7 +72,28 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 		g.drawImage(bg,0,0,null);																						//Dette gjør først hele skjermen "blank" så tegner den bakrunden, så tegner den Busthus
 		g.drawImage(Main.Maeng.getImage(), Math.round(Main.Maeng.getX()), Math.round(Main.Maeng.getY()), null);			//
 		g.drawImage(Main.Busthus.getImage(), Math.round(Main.Busthus.getX()), Math.round(Main.Busthus.getY()), null);	//
-		g.drawString(Main.version + "  Screen: " + s.getWidth() + " x " + s.getHeight(), 10, 20);																				//
+		if(Main.Busthus.getHealt() == 6){
+			g.drawImage(Main.wheart, 10, 30, null);
+			g.drawImage(Main.wheart, 30, 30, null);
+			g.drawImage(Main.wheart, 50, 30, null);
+		}else if(Main.Busthus.getHealt() == 5){
+			g.drawImage(Main.wheart, 10, 30, null);
+			g.drawImage(Main.wheart, 30, 30, null);
+			g.drawImage(Main.hheart, 50, 30, null);
+		}else if(Main.Busthus.getHealt() == 4){
+			g.drawImage(Main.wheart, 10, 30, null);
+			g.drawImage(Main.wheart, 30, 30, null);
+		}else if(Main.Busthus.getHealt() == 3){
+			g.drawImage(Main.wheart, 10, 30, null);
+			g.drawImage(Main.hheart, 30, 30, null);
+		}else if(Main.Busthus.getHealt() == 2){
+			g.drawImage(Main.wheart, 10, 30, null);
+		}else if(Main.Busthus.getHealt() == 1){
+			g.drawImage(Main.hheart, 10, 30, null);
+		}else if(Main.Busthus.getHealt() == 0){
+			g.drawString("GAME OVER!", s.getWidth()/2, s.getHeight()/2);
+		}
+		g.drawString(Main.version + "  Screen: " + s.getWidth() + " x " + s.getHeight()+"    Lives:"  + Main.Busthus.getHealt(), 10, 20);						//														//
 		g.dispose();																									//
 		
 	}
@@ -137,6 +131,8 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 		}
 		return direction;
 	}
+	
+
 	
 	
 	
