@@ -17,12 +17,14 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 	public static String dstring = "[DEBUG]\n";
 	public static Image wheart;
 	public static Image hheart;
+	public static Image eheart;
 
 	
 	public static void main(String[] args){	//Her starter programmet
 		dstring += "[Main] starting game\n";
 		hheart = new ImageIcon(Main.class.getResource("images/halfheart.png")).getImage();
 		wheart = new ImageIcon(Main.class.getResource("images/wholeheart.png")).getImage();
+		eheart = new ImageIcon(Main.class.getResource("images/emptyheart.png")).getImage();
 		Image[] up = {new ImageIcon(Main.class.getResource("images/machgu1.png")).getImage(),	//
 				new ImageIcon(Main.class.getResource("images/machgu2.png")).getImage(),			//Dette lagerer bildene for Busthus' sprite opp
 				new ImageIcon(Main.class.getResource("images/machgu1.png")).getImage(),			//
