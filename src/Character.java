@@ -231,7 +231,7 @@ public class Character {
 	}
 	
 	public void loseHealt(int lose, long time){
-		if(time-this.deadtime>5000){
+		if(time-this.deadtime>2000){
 			this.lives = this.lives - lose;
 			if(this.lives <= 0){
 				this.dead = true;
