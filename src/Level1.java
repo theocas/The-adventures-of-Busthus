@@ -81,15 +81,8 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 			g.drawImage(Main.eheart, 42, 30, null);
 		}else if(Main.Busthus.getHealt() == 1){
 			g.drawImage(Main.hheart, 10, 30, null);
-<<<<<<< HEAD
 			g.drawImage(Main.eheart, 26, 30, null);
 			g.drawImage(Main.eheart, 42, 30, null);
-		}else{
-			g.drawImage(Main.eheart, 10, 30, null);
-			g.drawImage(Main.eheart, 26, 30, null);
-			g.drawImage(Main.eheart, 42, 30, null);
-			g.drawString("GAME OVER!", s.getWidth()/2, s.getHeight()/2);
-=======
 		}else if(Main.Busthus.getHealt() == 0){
 			g.drawString("GAME OVER!", this.g.s.getWidth()/2, this.g.s.getHeight()/2);
 			try{
@@ -98,7 +91,6 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 			this.g.curr = "gameover";
 			
 			
->>>>>>> dev
 		}
 		g.drawString(Main.version + "  Screen: " + this.g.s.getWidth() + " x " + this.g.s.getHeight()+"    Lives:"  + Main.Busthus.getHealt(), 10, 20);						//														//
 		g.dispose();																									//
