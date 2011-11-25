@@ -19,6 +19,7 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 	public static String dstring = "[DEBUG]\n";
 	public static Image wheart;
 	public static Image hheart;
+	public static Image eheart;
 	public static ScreenManager sm;
 	static Game g;
 	static GameOver gameo;
@@ -29,6 +30,7 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 		sm = new ScreenManager();
 		hheart = new ImageIcon(Main.class.getResource("images/halfheart.png")).getImage();
 		wheart = new ImageIcon(Main.class.getResource("images/wholeheart.png")).getImage();
+		eheart = new ImageIcon(Main.class.getResource("images/emptyheart.png")).getImage();
 		Image[] up = {new ImageIcon(Main.class.getResource("images/machgu1.png")).getImage(),	//
 				new ImageIcon(Main.class.getResource("images/machgu2.png")).getImage(),			//Dette lagerer bildene for Busthus' sprite opp
 				new ImageIcon(Main.class.getResource("images/machgu1.png")).getImage(),			//
@@ -59,12 +61,17 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 		l1 = new Level1(g);			//Leser klassen Level1
 		menu = new Menu(g);
 		gameo = new GameOver(g);
+		/*
+		 *Launcher don't work propaly
+		 *
+		 *
 		Gui go = new Gui(g);
 		go.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		go.setSize(500,500);
 		go.setVisible(true);
 		try{Thread.sleep(500);}catch(Exception ex){}
 		while(go.running){}
+		*/
 		g.run();
 		
 		dstring += "[Main] game should be started\n";

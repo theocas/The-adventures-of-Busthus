@@ -70,13 +70,19 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 		}else if(Main.Busthus.getHealt() == 4){
 			g.drawImage(Main.wheart, 10, 30, null);
 			g.drawImage(Main.wheart, 26, 30, null);
+			g.drawImage(Main.eheart, 42, 30, null);
 		}else if(Main.Busthus.getHealt() == 3){
 			g.drawImage(Main.wheart, 10, 30, null);
 			g.drawImage(Main.hheart, 26, 30, null);
+			g.drawImage(Main.eheart, 42, 30, null);
 		}else if(Main.Busthus.getHealt() == 2){
 			g.drawImage(Main.wheart, 10, 30, null);
+			g.drawImage(Main.eheart, 26, 30, null);
+			g.drawImage(Main.eheart, 42, 30, null);
 		}else if(Main.Busthus.getHealt() == 1){
 			g.drawImage(Main.hheart, 10, 30, null);
+			g.drawImage(Main.eheart, 26, 30, null);
+			g.drawImage(Main.eheart, 42, 30, null);
 		}else if(Main.Busthus.getHealt() == 0){
 			g.drawString("GAME OVER!", this.g.s.getWidth()/2, this.g.s.getHeight()/2);
 			try{

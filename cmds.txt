@@ -1,0 +1,12 @@
+
+cd the-adventures-of-busthus
+git init
+git fetch origin
+git pull
+
+Hvis du legger til en fil:
+git add 'FILBANE EKS: src/images/image'
+
+for å laste opp/lagre:
+git commit -a -m 'hva du har gjort/dinmelding'
+git push -u origin master
