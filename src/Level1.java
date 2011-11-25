@@ -1,32 +1,18 @@
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.Window;
-
 import javax.swing.ImageIcon;
 
 
-public class Level1 extends Core implements Runnable{ //gjør så den bygger på classen Core. og gjør så den kan kan kjøres  med run()
+public class Level1 implements Runnable{ //gjør så den bygger på classen Core. og gjør så den kan kan kjøres  med run()
 	Main m; //for å slippe å skrive main.
+	Game g;
 	Image bg = new ImageIcon(Main.class.getResource("images/bg.png")).getImage();//bakgrunden til spillet
 	
-	public Level1(){
-		m = new Main();
-	}
-	
-	public void run() {
-		super.run();//kjører run i Core
+	public Level1(Game g){
+		this.g = g;
 	}
 
-	
-	//set full screen
-	public void init(){							//Denne blir kjørt fra core
-		super.init();							//kjører init i core
-		Window w = s.getFullScreenWindow();		//
-		w.setFocusTraversalKeysEnabled(false);	//Noen skjermgreier
-		w.addKeyListener(m);					//
-	}
-	
 	//update the animation
 	public void update(long timePassed, long currtime){
 		
@@ -37,21 +23,21 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 			Main.Busthus.loseHealt(1, currtime);
 		}
 		
-		if(Main.Busthus.getX() + Main.Busthus.getWidth()+1 >= s.getWidth() && m.right){		//
+		if(Main.Busthus.getX() + Main.Busthus.getWidth()+1 >= g.s.getWidth() && g.right){		//
 			Main.Busthus.setMoving(false);													//
-			m.right = false;																//
+			g.right = false;																//
 		}																					//
-		if(Main.Busthus.getX()-1 <= 0 && m.left){											//
+		if(Main.Busthus.getX()-1 <= 0 && g.left){											//
 			Main.Busthus.setMoving(false);													//Dette skal egentlig gjøre så man ikke kan gå utenfor skjermen
-			m.left = false;																	//
+			g.left = false;																	//
 		}																					//
-		if(Main.Busthus.getY()-1 <= 0 && m.up){												//
+		if(Main.Busthus.getY()-1 <= 0 && g.up){												//
 			Main.Busthus.setMoving(false);													//
-			m.up = false;																	//
+			g.up = false;																	//
 		}																					//
-		if(Main.Busthus.getY() + Main.Busthus.getHeight()+1 >= s.getHeight() && m.down){	//
+		if(Main.Busthus.getY() + Main.Busthus.getHeight()+1 >= g.s.getHeight() && g.down){	//
 			Main.Busthus.setMoving(false);													//
-			m.down = false;																	//
+			g.down = false;																	//
 		}																					//
 		if(Main.Busthus.getMoving()){														//
 			Main.Busthus.update(timePassed);												//
@@ -63,6 +49,7 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 			Main.Maeng.setImage(dir);
 			Main.Maeng.update(timePassed);
 		}
+		
 		
 		
 	}
@@ -91,9 +78,15 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 		}else if(Main.Busthus.getHealt() == 1){
 			g.drawImage(Main.hheart, 10, 30, null);
 		}else if(Main.Busthus.getHealt() == 0){
-			g.drawString("GAME OVER!", s.getWidth()/2, s.getHeight()/2);
+			g.drawString("GAME OVER!", this.g.s.getWidth()/2, this.g.s.getHeight()/2);
+			try{
+				Thread.sleep(3000);
+			}catch(Exception ex){}
+			this.g.curr = "gameover";
+			
+			
 		}
-		g.drawString(Main.version + "  Screen: " + s.getWidth() + " x " + s.getHeight()+"    Lives:"  + Main.Busthus.getHealt(), 10, 20);						//														//
+		g.drawString(Main.version + "  Screen: " + this.g.s.getWidth() + " x " + this.g.s.getHeight()+"    Lives:"  + Main.Busthus.getHealt(), 10, 20);						//														//
 		g.dispose();																									//
 		
 	}
@@ -130,6 +123,12 @@ public class Level1 extends Core implements Runnable{ //gjør så den bygger på cl
 			}
 		}
 		return direction;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

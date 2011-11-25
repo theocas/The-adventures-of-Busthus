@@ -3,9 +3,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 	static Level1 l1;	//l1==Level1(en classe)
+	static Menu menu;
 	public static String version = "The adventures of Busthus version: Alpha 1";
 	public static Character Busthus;
 	public static Character Maeng;
@@ -17,10 +19,14 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 	public static String dstring = "[DEBUG]\n";
 	public static Image wheart;
 	public static Image hheart;
+	public static ScreenManager sm;
+	static Game g;
+	static GameOver gameo;
 
 	
 	public static void main(String[] args){	//Her starter programmet
 		dstring += "[Main] starting game\n";
+		sm = new ScreenManager();
 		hheart = new ImageIcon(Main.class.getResource("images/halfheart.png")).getImage();
 		wheart = new ImageIcon(Main.class.getResource("images/wholeheart.png")).getImage();
 		Image[] up = {new ImageIcon(Main.class.getResource("images/machgu1.png")).getImage(),	//
@@ -42,15 +48,25 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 				new ImageIcon(Main.class.getResource("images/machgr2.png")).getImage(),			//Dette lagerer bildene for Busthus' sprite til høyre
 				new ImageIcon(Main.class.getResource("images/machgr1.png")).getImage(),			//
 				new ImageIcon(Main.class.getResource("images/machgr3.png")).getImage()};			//
-		Busthus = new Character("Busthus",right,left,up,down,200,200,0.08f,0.0f,-0.08f,0.0f,0.0f,-0.08f,0.0f,0.08f,"Left", 6);//Dette lagrer alle spritene til Busthus i et eget objekt
+		Busthus = new Busthus("Busthus",right,left,up,down,200,200,0.08f,0.0f,-0.08f,0.0f,0.0f,-0.08f,0.0f,0.08f,"Left", 6);//Dette lagrer alle spritene til Busthus i et eget objekt
 		dstring += "[Main] Loaded Character(Busthus)\n";
 		
 		Image[] maengmove = {new ImageIcon(Main.class.getResource("images/maeng1.png")).getImage(),new ImageIcon(Main.class.getResource("images/maeng2.png")).getImage()};
-		Maeng = new Character("Maeng",maengmove,maengmove,maengmove,maengmove,500,500,0.05f,0.0f,-0.05f,0.0f,0.0f,-0.05f,0.0f,0.05f,"Left", 6);
+		Maeng = new maeng("Maeng",maengmove,maengmove,maengmove,maengmove,500,500,0.05f,0.0f,-0.05f,0.0f,0.0f,-0.05f,0.0f,0.05f,"Left", 6);
 		dstring += "[Main] Loaded Character(Maeng)\n";
 		
-		l1 = new Level1();			//Leser klassen Level1
-		l1.run();			//kjører run() i l1
+		g = new Game();
+		l1 = new Level1(g);			//Leser klassen Level1
+		menu = new Menu(g);
+		gameo = new GameOver(g);
+		Gui go = new Gui(g);
+		go.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		go.setSize(500,500);
+		go.setVisible(true);
+		try{Thread.sleep(500);}catch(Exception ex){}
+		while(go.running){}
+		g.run();
+		
 		dstring += "[Main] game should be started\n";
 	}
 
@@ -58,70 +74,12 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 	//keypressed
 	public void keyPressed(KeyEvent e){
 		int keyCode = e.getKeyCode();	//Finner ut hvilken knapp som ble trykket
-		dstring += "[Main] a button has been pushed\n";
-		
-		//Dette er ikke så vanskelig. den finner ut hvilken knapp det er og gjør ting deretter
-		if(keyCode == KeyEvent.VK_ESCAPE){
-			dstring += "[Main] it was escape\n";
-			dstring += "[Main] stopping game\n";
-			l1.stop();	//Stopper level1
-			dstring += "[Main] game should be stopped\n";
-		}else if(keyCode == KeyEvent.VK_D){
-			Busthus.setImage("right");//sier at det er right/høyre som er den gjeldende veien Busthus går
-			Busthus.setMoving(true);//Sier at Busthus er i bevegelse
-			right = true;
-			left = false;
-			up = false;
-			down = false;
-		}else if(keyCode == KeyEvent.VK_A){
-			Busthus.setImage("left");
-			Busthus.setMoving(true);
-			right = false;
-			left = true;
-			up = false;
-			down = false;
-		}else if(keyCode == KeyEvent.VK_W){
-			Busthus.setImage("up");
-			Busthus.setMoving(true);
-			right = false;
-			left = false;
-			up = true;
-			down = false;
-		}else if(keyCode == KeyEvent.VK_S){
-			Busthus.setImage("down");
-			Busthus.setMoving(true);
-			right = false;
-			left = false;
-			up = false;
-			down = true;
-		}
 		e.consume();
 	}
 	
 	//keyRelased
 	public void keyReleased(KeyEvent e){
 		int keyCode = e.getKeyCode();
-		if(keyCode == KeyEvent.VK_D){
-			if(right){
-				Busthus.setMoving(false);//Sier at Busthus ikke er i becvegelse
-			}
-			right = false;
-		}else if(keyCode == KeyEvent.VK_A){
-			if(left){
-				Busthus.setMoving(false);
-			}
-			left = false;
-		}else if(keyCode== KeyEvent.VK_W){
-			if(up){
-				Busthus.setMoving(false);
-			}
-			up = false;
-		}else if(keyCode== KeyEvent.VK_S){
-			if(down){
-				Busthus.setMoving(false);
-			}
-			down = false;
-		}
 		e.consume();
 	}
 	
