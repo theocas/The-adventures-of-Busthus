@@ -46,7 +46,7 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 		
 		String dir;
 		dir = follow(Main.Maeng,Main.Busthus.getX(),Main.Busthus.getY());
-		if(dir != null){
+		if(dir != null && !Main.Busthus.dead){
 			Main.Maeng.setImage(dir);
 			Main.Maeng.update(timePassed);
 		}
