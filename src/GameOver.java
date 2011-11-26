@@ -24,7 +24,7 @@ public class GameOver {
 	
 	public void draw(Graphics2D g) {
 		Color c = g.getColor();
-		g.setColor(Color.RED);
+		g.setColor(Color.getHSBColor(49, 100, 0));
 		g.fillRect(0, 0, this.g.s.getWidth(), this.g.s.getHeight());
 		g.setColor(c);
 		g.drawImage(gameover, 0,0, null);
