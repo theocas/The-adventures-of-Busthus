@@ -1,9 +1,7 @@
 import java.awt.*;	//Masse imports
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
 public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 	static Level1 l1;	//l1==Level1(en classe)
@@ -80,13 +78,13 @@ public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
 	
 	//keypressed
 	public void keyPressed(KeyEvent e){
-		int keyCode = e.getKeyCode();	//Finner ut hvilken knapp som ble trykket
+		//int keyCode = e.getKeyCode();	//Finner ut hvilken knapp som ble trykket
 		e.consume();
 	}
 	
 	//keyRelased
 	public void keyReleased(KeyEvent e){
-		int keyCode = e.getKeyCode();
+		//int keyCode = e.getKeyCode();
 		e.consume();
 	}
 	
