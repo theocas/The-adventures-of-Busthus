@@ -8,6 +8,7 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 	Main m; //for å slippe å skrive main.
 	Game g;
 	Image bg = new ImageIcon(Main.class.getResource("images/bg.png")).getImage();//bakgrunden til spillet
+	boolean gameover = false;
 	
 	public Level1(Game g){
 		this.g = g;
@@ -50,8 +51,6 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 			Main.Maeng.update(timePassed);
 		}
 		
-		
-		
 	}
 	
 	public void draw(Graphics2D g) {
@@ -85,15 +84,14 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 			g.drawImage(Main.eheart, 42, 30, null);
 		}else if(Main.Busthus.getHealt() == 0){
 			g.drawString("GAME OVER!", this.g.s.getWidth()/2, this.g.s.getHeight()/2);
-			try{
-				Thread.sleep(3000);
-			}catch(Exception ex){}
+			g.drawImage(Main.eheart, 10, 30, null);
+			g.drawImage(Main.eheart, 26, 30, null);
+			g.drawImage(Main.eheart, 42, 30, null);
 			this.g.curr = "gameover";
-			
-			
 		}
 		g.drawString(Main.version + "  Screen: " + this.g.s.getWidth() + " x " + this.g.s.getHeight()+"    Lives:"  + Main.Busthus.getHealt(), 10, 20);						//														//
 		g.dispose();																									//
+
 		
 	}
 	

@@ -86,6 +86,8 @@ public class Game extends Core implements KeyListener{
 				left = false;
 				up = true;
 				down = false;
+			}else if(curr == "gameover"){
+				Main.gameo.selChange();
 			}
 
 		}else if(keyCode == KeyEvent.VK_S){
@@ -96,10 +98,24 @@ public class Game extends Core implements KeyListener{
 				left = false;
 				up = false;
 				down = true;
+			}else if(curr == "gameover"){
+				Main.gameo.selChange();
 			}
 			
 		}else if(keyCode == KeyEvent.VK_Q){
 			stop();
+		}else if(keyCode == KeyEvent.VK_ENTER){
+			if(curr == "gameover"){
+				if(Main.gameo.getSelection() == 1){
+					Main.Busthus.gainHealt(6);
+					Main.Busthus.dead = false;
+					Main.Maeng.setX(s.getWidth());
+					Main.Maeng.setY(s.getHeight());
+					curr = "level1";
+				}else{
+					stop();
+				}
+			}
 		}
 		e.consume();
 	}
