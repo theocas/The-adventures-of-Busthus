@@ -88,6 +88,8 @@ public class Game extends Core implements KeyListener{
 				down = false;
 			}else if(curr == "gameover"){
 				Main.gameo.selChange();
+			}else if(curr == "menu"){
+				Main.menu.selUp();
 			}
 
 		}else if(keyCode == KeyEvent.VK_S){
@@ -100,6 +102,8 @@ public class Game extends Core implements KeyListener{
 				down = true;
 			}else if(curr == "gameover"){
 				Main.gameo.selChange();
+			}else if(curr == "menu"){
+				Main.menu.selDown();
 			}
 			
 		}else if(keyCode == KeyEvent.VK_Q){
@@ -111,6 +115,12 @@ public class Game extends Core implements KeyListener{
 					Main.Busthus.dead = false;
 					Main.Maeng.setX(s.getWidth());
 					Main.Maeng.setY(s.getHeight());
+					curr = "level1";
+				}else{
+					stop();
+				}
+			}else if(curr == "menu"){
+				if(Main.menu.getSelection() == 2){
 					curr = "level1";
 				}else{
 					stop();
