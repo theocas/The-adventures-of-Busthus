@@ -22,6 +22,57 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 		
 		if(ma.intersects(bu)){
 			Main.Busthus.loseHealt(1, currtime);
+			if(Main.Busthus.getMoving()){
+				
+				if(g.down){
+					Main.Busthus.setY(Main.Busthus.getY()-25);
+				}else if(g.up){
+					Main.Busthus.setY(Main.Busthus.getY()+25);
+				}else if(g.left){
+					Main.Busthus.setX(Main.Busthus.getX()+25);
+				}else{
+					Main.Busthus.setX(Main.Busthus.getX()-25);
+				}
+				
+			}else{
+				
+				int EX = Main.Maeng.getX();
+				int EY = Main.Maeng.getY();
+				int CX = Main.Busthus.getX();
+				int CY = Main.Busthus.getY();
+				int DX;
+				int DY;
+				
+				if(EX>CX){
+					DX = EX - CX;
+				}else{
+					DX = CX - EX;
+				}
+				if(EY>CY){
+					DY = EY - CY;
+				}else{
+					DY = CY - EY;
+				}
+				
+				 if(DX>DY){
+					 
+					 if(EX>CX){
+						 Main.Busthus.setX(Main.Busthus.getX()-25);
+					 }else{
+						 Main.Busthus.setX(Main.Busthus.getX()+25);
+					 }
+					 
+				 }else{
+					 
+					 if(EY>CY){
+						 Main.Busthus.setY(Main.Busthus.getY()-25);
+					 }else{
+						 Main.Busthus.setY(Main.Busthus.getY()+25);
+					 }
+					 
+				 }
+				
+			}
 			/*if(g.up){
 				Main.Busthus.setY(Main.Busthus.getY()+50);
 				Main.Busthus.setMoving(false);
@@ -133,7 +184,6 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 		}else{
 			Y = c.getY() - FY;
 		}
-		String direction = null;
 		
 		System.out.println("FX = "+FX);
 		System.out.println("FY = "+FY);
