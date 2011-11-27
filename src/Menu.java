@@ -9,11 +9,7 @@ public class Menu{
 	Game g;
 	Image menu;
 	Image selector;
-<<<<<<< HEAD
-	private int selection = 1;
-=======
 	private int selection = 2;
->>>>>>> dev
 	
 	public Menu(Game g){
 		this.g = g;

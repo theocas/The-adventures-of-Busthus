@@ -21,78 +21,62 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 		Rectangle ma = new Rectangle(Main.Maeng.getX(), Main.Maeng.getY(),Main.Maeng.getWidth(),Main.Maeng.getHeight());
 		
 		if(ma.intersects(bu)){
-			Main.Busthus.loseHealt(1, currtime);
-			if(Main.Busthus.getMoving()){
-				
-				if(g.down){
-					Main.Busthus.setY(Main.Busthus.getY()-25);
-				}else if(g.up){
-					Main.Busthus.setY(Main.Busthus.getY()+25);
-				}else if(g.left){
-					Main.Busthus.setX(Main.Busthus.getX()+25);
+			if( currtime-Main.Busthus.deadtime>2000){
+				if(Main.Busthus.getMoving()){
+					
+					if(g.down){
+						Main.Busthus.setY(Main.Busthus.getY()-25);
+					}else if(g.up){
+						Main.Busthus.setY(Main.Busthus.getY()+25);
+					}else if(g.left){
+						Main.Busthus.setX(Main.Busthus.getX()+25);
+					}else{
+						Main.Busthus.setX(Main.Busthus.getX()-25);
+					}
+					
 				}else{
-					Main.Busthus.setX(Main.Busthus.getX()-25);
-				}
-				
-			}else{
-				
-				int EX = Main.Maeng.getX();
-				int EY = Main.Maeng.getY();
-				int CX = Main.Busthus.getX();
-				int CY = Main.Busthus.getY();
-				int DX;
-				int DY;
-				
-				if(EX>CX){
-					DX = EX - CX;
-				}else{
-					DX = CX - EX;
-				}
-				if(EY>CY){
-					DY = EY - CY;
-				}else{
-					DY = CY - EY;
-				}
-				
-				 if(DX>DY){
-					 
-					 if(EX>CX){
-						 Main.Busthus.setX(Main.Busthus.getX()-25);
+					
+					int EX = Main.Maeng.getX();
+					int EY = Main.Maeng.getY();
+					int CX = Main.Busthus.getX();
+					int CY = Main.Busthus.getY();
+					int DX;
+					int DY;
+					
+					if(EX>CX){
+						DX = EX - CX;
+					}else{
+						DX = CX - EX;
+					}
+					if(EY>CY){
+						DY = EY - CY;
+					}else{
+						DY = CY - EY;
+					}
+					
+					 if(DX>DY){
+						 
+						 if(EX>CX){
+							 Main.Busthus.setX(Main.Busthus.getX()-25);
+						 }else{
+							 Main.Busthus.setX(Main.Busthus.getX()+25);
+						 }
+						 
 					 }else{
-						 Main.Busthus.setX(Main.Busthus.getX()+25);
+						 
+						 if(EY>CY){
+							 Main.Busthus.setY(Main.Busthus.getY()-25);
+						 }else{
+							 Main.Busthus.setY(Main.Busthus.getY()+25);
+						 }
+						 
 					 }
-					 
-				 }else{
-					 
-					 if(EY>CY){
-						 Main.Busthus.setY(Main.Busthus.getY()-25);
-					 }else{
-						 Main.Busthus.setY(Main.Busthus.getY()+25);
-					 }
-					 
-				 }
-				
+					
+				}
 			}
-			/*if(g.up){
-				Main.Busthus.setY(Main.Busthus.getY()+50);
-				Main.Busthus.setMoving(false);
-				g.up = false;
-			}else if(g.down){
-				Main.Busthus.setY(Main.Busthus.getY()-50);
-				Main.Busthus.setMoving(false);
-				g.down = false;
-			}else if(g.left){
-				Main.Busthus.setX(Main.Busthus.getX()+50);
-				Main.Busthus.setMoving(false);
-				g.left = false;
-			}else if(g.right){
-				Main.Busthus.setX(Main.Busthus.getX()-50);
-				Main.Busthus.setMoving(false);
-				g.right = false;
-			}else{
-				
-				
-			}*/
+
+			Main.Busthus.loseHealt(1, currtime);
+			
 		}
 		
 		if(Main.Busthus.getX() + Main.Busthus.getWidth()+1 >= g.s.getWidth() && g.right){		//
