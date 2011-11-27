@@ -22,6 +22,77 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 		
 		if(ma.intersects(bu)){
 			Main.Busthus.loseHealt(1, currtime);
+			if(Main.Busthus.getMoving()){
+				
+				if(g.down){
+					Main.Busthus.setY(Main.Busthus.getY()-25);
+				}else if(g.up){
+					Main.Busthus.setY(Main.Busthus.getY()+25);
+				}else if(g.left){
+					Main.Busthus.setX(Main.Busthus.getX()+25);
+				}else{
+					Main.Busthus.setX(Main.Busthus.getX()-25);
+				}
+				
+			}else{
+				
+				int EX = Main.Maeng.getX();
+				int EY = Main.Maeng.getY();
+				int CX = Main.Busthus.getX();
+				int CY = Main.Busthus.getY();
+				int DX;
+				int DY;
+				
+				if(EX>CX){
+					DX = EX - CX;
+				}else{
+					DX = CX - EX;
+				}
+				if(EY>CY){
+					DY = EY - CY;
+				}else{
+					DY = CY - EY;
+				}
+				
+				 if(DX>DY){
+					 
+					 if(EX>CX){
+						 Main.Busthus.setX(Main.Busthus.getX()-25);
+					 }else{
+						 Main.Busthus.setX(Main.Busthus.getX()+25);
+					 }
+					 
+				 }else{
+					 
+					 if(EY>CY){
+						 Main.Busthus.setY(Main.Busthus.getY()-25);
+					 }else{
+						 Main.Busthus.setY(Main.Busthus.getY()+25);
+					 }
+					 
+				 }
+				
+			}
+			/*if(g.up){
+				Main.Busthus.setY(Main.Busthus.getY()+50);
+				Main.Busthus.setMoving(false);
+				g.up = false;
+			}else if(g.down){
+				Main.Busthus.setY(Main.Busthus.getY()-50);
+				Main.Busthus.setMoving(false);
+				g.down = false;
+			}else if(g.left){
+				Main.Busthus.setX(Main.Busthus.getX()+50);
+				Main.Busthus.setMoving(false);
+				g.left = false;
+			}else if(g.right){
+				Main.Busthus.setX(Main.Busthus.getX()-50);
+				Main.Busthus.setMoving(false);
+				g.right = false;
+			}else{
+				
+				
+			}*/
 		}
 		
 		if(Main.Busthus.getX() + Main.Busthus.getWidth()+1 >= g.s.getWidth() && g.right){		//
@@ -43,13 +114,15 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 		if(Main.Busthus.getMoving()){														//
 			Main.Busthus.update(timePassed);												//
 		}																					//
-		
-		String dir;
-		dir = follow(Main.Maeng,Main.Busthus.getX(),Main.Busthus.getY());
-		if(dir != null && !Main.Busthus.dead){
+		System.out.println("getting follow");
+		String dir = follow(Main.Maeng, Main.Busthus.getX(), Main.Busthus.getY());
+		System.out.println("follow got");
+		if(dir != null){
+			System.out.println("Follow was not null");
 			Main.Maeng.setImage(dir);
 			Main.Maeng.update(timePassed);
 		}
+		
 		
 	}
 	
@@ -111,22 +184,32 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 		}else{
 			Y = c.getY() - FY;
 		}
-		String direction = null;
 		
-		if(X>Y){
+		System.out.println("FX = "+FX);
+		System.out.println("FY = "+FY);
+		
+		if(Y==X){
 			if(FX>c.getX()){
-				direction = "Right";
+				return "Right";
 			}else if(FX<c.getX()){
-				direction = "Left";
+				return "Left";
+			}else{
+				return "Right";
+			}
+		}else if(X>Y){
+			if(FX>c.getX()){
+				return "Right";
+			}else if(FX<c.getX()){
+				return "Left";
 			}
 		}else if(Y>X){
 			if(FY>c.getY()){
-				direction = "Down";
+				return "Down";
 			}else if(FY<c.getY()){
-				direction = "Up";
+				return "Up";
 			}
 		}
-		return direction;
+		return "Up";
 	}
 
 	@Override
