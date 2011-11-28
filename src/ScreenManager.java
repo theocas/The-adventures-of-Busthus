@@ -111,7 +111,7 @@ public class ScreenManager {
 	public int getHeight(){
 		Window w = vc.getFullScreenWindow();
 		if(w != null){
-			return w.getWidth();
+			return w.getHeight();
 		}else{
 			return 0;
 		}

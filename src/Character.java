@@ -5,6 +5,10 @@ import java.awt.Image;
 
 public class Character {
 	
+	
+	public double defX;
+	public double defY;
+	public int defLives;
 	String name;					//
 	String currentimage;			//
 	Image ir;						//
@@ -41,7 +45,9 @@ public class Character {
 		this.name = name;					//
 		this.currentimage = currentimage;	//
 		this.x = x;							//
+		defX = x;
 		this.y = y;							//
+		defY = y;
 		this.vxr = vxr;						//
 		this.vyr = vyr;						//
 		this.vxl = vxl;						//
@@ -55,6 +61,7 @@ public class Character {
 		this.iu = au[0];					//
 		this.id = ad[0];					//
 		this.lives = lives;					//
+		defLives = lives;
 		
 		this.ar = new Animation();
 		for(int counter=0; counter<ar.length; counter++){

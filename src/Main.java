@@ -3,7 +3,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 
-public class Main  implements KeyListener{ 	//Så du kan bruke tastaturet
+public class Main{//  implements KeyListener{ 	//Så du kan bruke tastaturet
 	static Level1 l1;	//l1==Level1(en classe)
 	static Menu menu;
 	public static String version = "The adventures of Busthus version: Alpha 1";

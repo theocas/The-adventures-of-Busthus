@@ -111,10 +111,17 @@ public class Game extends Core implements KeyListener{
 		}else if(keyCode == KeyEvent.VK_ENTER){
 			if(curr == "gameover"){
 				if(Main.gameo.getSelection() == 1){
-					Main.Busthus.gainHealt(6);
+					Main.Busthus.lives = Main.Busthus.defLives;
 					Main.Busthus.dead = false;
-					Main.Maeng.setX(s.getWidth());
-					Main.Maeng.setY(s.getHeight());
+					Main.Busthus.setX((int) Main.Busthus.defX);
+					Main.Busthus.setY((int) Main.Busthus.defY);
+					left = false;
+					right = false;
+					up = false;
+					down = false;
+					Main.Busthus.setMoving(false);
+					Main.Maeng.setX((int) Main.Maeng.defX);
+					Main.Maeng.setY((int) Main.Maeng.defY);
 					curr = "level1";
 				}else{
 					stop();
