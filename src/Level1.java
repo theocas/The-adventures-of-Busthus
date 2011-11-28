@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -9,6 +10,7 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 	Game g;
 	Image bg = new ImageIcon(Main.class.getResource("images/bg.png")).getImage();//bakgrunden til spillet
 	boolean gameover = false;
+	Rectangle info = new Rectangle(0,0,450,50);
 	
 	public Level1(Game g){
 		this.g = g;
@@ -79,6 +81,32 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 			
 		}
 		
+		if(info.intersects(bu)){
+			
+			if(Main.Busthus.getMoving()){
+				
+				if(g.up){
+					if(Main.Busthus.getY()>info.getHeight()){
+						
+					}else{
+						g.up = false;
+						Main.Busthus.setMoving(false);
+					}
+
+				}else if(g.left){
+					if(Main.Busthus.getX()>info.getWidth()){
+						
+					}else{
+						g.left = false;
+						Main.Busthus.setMoving(false);
+					}
+
+				}
+				
+			}
+			
+		}
+		
 		if(Main.Busthus.getX() + Main.Busthus.getWidth()+1 >= g.s.getWidth() && g.right){		//
 			Main.Busthus.setMoving(false);													//
 			g.right = false;																//
@@ -109,12 +137,19 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 		
 		
 	}
-	
+	/*
+	 * Ths code firs draw the peson and the emeny, then the hearts(the long code) then the debug info.
+	 */
 	public void draw(Graphics2D g) {
 		g.clearRect(0, 0, 1000, 1000);																					//
 		g.drawImage(bg,0,0,null);																						//Dette gjør først hele skjermen "blank" så tegner den bakrunden, så tegner den Busthus
 		g.drawImage(Main.Maeng.getImage(), Math.round(Main.Maeng.getX()), Math.round(Main.Maeng.getY()), null);			//
 		g.drawImage(Main.Busthus.getImage(), Math.round(Main.Busthus.getX()), Math.round(Main.Busthus.getY()), null);	//
+		g.draw(info);
+		Color c = g.getColor();
+		g.setColor(new Color(96, 96, 96));
+		g.fill(info);
+		g.setColor(c);
 		if(Main.Busthus.getHealt() == 6){
 			g.drawImage(Main.wheart, 10, 30, null);
 			g.drawImage(Main.wheart, 26, 30, null);
