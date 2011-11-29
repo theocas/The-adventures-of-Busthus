@@ -1,6 +1,5 @@
 import java.awt.*;	//Masse imports
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 
 public class Main{//  implements KeyListener{ 	//Så du kan bruke tastaturet

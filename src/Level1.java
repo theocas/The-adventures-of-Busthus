@@ -81,26 +81,16 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 			
 		}
 		
-		if(info.intersects(bu)){
+		if(bu.intersects(info)){
 			
 			if(Main.Busthus.getMoving()){
 				
-				if(g.up){
-					if(Main.Busthus.getY()>info.getHeight()){
-						
-					}else{
-						g.up = false;
-						Main.Busthus.setMoving(false);
-					}
-
-				}else if(g.left){
-					if(Main.Busthus.getX()>info.getWidth()){
-						
-					}else{
-						g.left = false;
-						Main.Busthus.setMoving(false);
-					}
-
+				if(g.up && Main.Busthus.getX()<info.getWidth()-2){
+					g.up = false;
+					Main.Busthus.setMoving(false);
+				}else if(g.left && Main.Busthus.getY()<info.getHeight()-2){
+					g.left = false;
+					Main.Busthus.setMoving(false);
 				}
 				
 			}
