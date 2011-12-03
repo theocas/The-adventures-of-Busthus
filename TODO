@@ -12,12 +12,10 @@ PROGRAMMING:
 	-Fix bugs(see BUGS)
 
 SPRITING:
-	-Draw enemies
 		*Busthus' mom/sister or whatever you are supposed to save
 	-Draw the background of every screen and dungeon
 	-Draw menues:
 		*launcher
-		*pause
 		*mainmenu
 
 DONE:
