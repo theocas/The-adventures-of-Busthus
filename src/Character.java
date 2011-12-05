@@ -33,14 +33,16 @@ public class Character {
 	float vyu;						//
 	float vxd;						//
 	float vyd;						//
+	Image[] attacks;				//
 	Boolean moving = false;			//
 	int lives;						//
 	boolean losingHealt = false;	//
 	boolean dead = false;			//
 	long deadtime = 0;
+	boolean attacking = false;
 	
 	
-	public Character(String name, Image[] ar, Image[] al, Image[] au, Image[] ad, double x, double y, float vxr, float vyr, float vxl, float vyl, float vxu, float vyu, float vxd, float vyd, String currentimage, int lives){
+	public Character(String name, Image[] ar, Image[] al, Image[] au, Image[] ad, Image[] attack, double x, double y, float vxr, float vyr, float vxl, float vyl, float vxu, float vyu, float vxd, float vyd, String currentimage, int lives){
 		
 		this.name = name;					//
 		this.currentimage = currentimage;	//
@@ -62,6 +64,7 @@ public class Character {
 		this.id = ad[0];					//
 		this.lives = lives;					//
 		defLives = lives;
+		this.attacks = attack;
 		
 		this.ar = new Animation();
 		for(int counter=0; counter<ar.length; counter++){
@@ -112,11 +115,23 @@ public class Character {
 	
 	public Image getImage(){
 		if(currentimage == "Left"){
+			if(attacking){
+				return attacks[0];
+			}
 			return il;
 		}else if(currentimage == "Up"){
+			if(attacking){
+				return attacks[2];
+			}
 			return iu;
 		}else if(currentimage == "Down"){
+			if(attacking){
+				return attacks[3];
+			}
 			return id;
+		}
+		if(attacking){
+			return attacks[1];
 		}
 		return ir;
 	}
@@ -255,6 +270,14 @@ public class Character {
 	
 	public void updateHealt(double x){
 		
+	}
+	
+	public void toggleAttack(){
+		if(attacking == true){
+			attacking = false;
+		}else{
+			attacking = true;
+		}
 	}
 	
 }

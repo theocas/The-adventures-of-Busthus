@@ -10,7 +10,7 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 	Game g;
 	Image bg = new ImageIcon(Main.class.getResource("images/bg.png")).getImage();//bakgrunden til spillet
 	boolean gameover = false;
-	Rectangle info = new Rectangle(0,0,450,50);
+	Rectangle info = new Rectangle(0,0,300,50);
 	
 	public Level1(Game g){
 		this.g = g;
@@ -23,62 +23,76 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 		Rectangle ma = new Rectangle(Main.Maeng.getX(), Main.Maeng.getY(),Main.Maeng.getWidth(),Main.Maeng.getHeight());
 		
 		if(ma.intersects(bu)){
-			if( currtime-Main.Busthus.deadtime>2000){
-				if(Main.Busthus.getMoving()){
-					
-					if(g.down){
-						Main.Busthus.setY(Main.Busthus.getY()-25);
-					}else if(g.up){
-						Main.Busthus.setY(Main.Busthus.getY()+25);
-					}else if(g.left){
-						Main.Busthus.setX(Main.Busthus.getX()+25);
-					}else{
-						Main.Busthus.setX(Main.Busthus.getX()-25);
-					}
-					
-				}else{
-					
-					int EX = Main.Maeng.getX();
-					int EY = Main.Maeng.getY();
-					int CX = Main.Busthus.getX();
-					int CY = Main.Busthus.getY();
-					int DX;
-					int DY;
-					
-					if(EX>CX){
-						DX = EX - CX;
-					}else{
-						DX = CX - EX;
-					}
-					if(EY>CY){
-						DY = EY - CY;
-					}else{
-						DY = CY - EY;
-					}
-					
-					 if(DX>DY){
-						 
-						 if(EX>CX){
-							 Main.Busthus.setX(Main.Busthus.getX()-25);
-						 }else{
-							 Main.Busthus.setX(Main.Busthus.getX()+25);
-						 }
-						 
-					 }else{
-						 
-						 if(EY>CY){
-							 Main.Busthus.setY(Main.Busthus.getY()-25);
-						 }else{
-							 Main.Busthus.setY(Main.Busthus.getY()+25);
-						 }
-						 
-					 }
-					
-				}
-			}
-
-			Main.Busthus.loseHealt(1, currtime);
 			
+			if(!Main.Maeng.dead){
+				if( currtime-Main.Busthus.deadtime>2000){
+					if(Main.Busthus.attacking && g.left && Main.Maeng.getX() < Main.Busthus.getX()){
+						Main.Maeng.loseHealt(2, currtime);
+						Main.Maeng.setX(Main.Maeng.getX() - 30);
+					}else if(Main.Busthus.attacking && g.right && Main.Maeng.getX() > Main.Busthus.getX()){
+						Main.Maeng.loseHealt(2, currtime);
+						Main.Maeng.setX(Main.Maeng.getX() + 30);
+					}else if(Main.Busthus.attacking && g.up && Main.Maeng.getY() < Main.Busthus.getY()){
+						Main.Maeng.loseHealt(2, currtime);
+						Main.Maeng.setY(Main.Maeng.getY() - 30);
+					}else if(Main.Busthus.getMoving()){
+						
+						if(g.down && Main.Maeng.getY() > Main.Busthus.getY()){
+							Main.Maeng.loseHealt(2, currtime);
+							Main.Maeng.setY(Main.Maeng.getY() + 30);
+						}else if(g.down){
+							Main.Busthus.setY(Main.Busthus.getY()-25);
+						}else if(g.up){
+							Main.Busthus.setY(Main.Busthus.getY()+25);
+						}else if(g.left){
+							Main.Busthus.setX(Main.Busthus.getX()+25);
+						}else{
+							Main.Busthus.setX(Main.Busthus.getX()-25);
+						}
+						
+					}else{
+						
+						int EX = Main.Maeng.getX();
+						int EY = Main.Maeng.getY();
+						int CX = Main.Busthus.getX();
+						int CY = Main.Busthus.getY();
+						int DX;
+						int DY;
+						
+						if(EX>CX){
+							DX = EX - CX;
+						}else{
+							DX = CX - EX;
+						}
+						if(EY>CY){
+							DY = EY - CY;
+						}else{
+							DY = CY - EY;
+						}
+						
+						 if(DX>DY){
+							 
+							 if(EX>CX){
+								 Main.Busthus.setX(Main.Busthus.getX()-25);
+							 }else{
+								 Main.Busthus.setX(Main.Busthus.getX()+25);
+							 }
+							 
+						 }else{
+							 
+							 if(EY>CY){
+								 Main.Busthus.setY(Main.Busthus.getY()-25);
+							 }else{
+								 Main.Busthus.setY(Main.Busthus.getY()+25);
+							 }
+							 
+						 }
+						
+					}
+				}
+
+				Main.Busthus.loseHealt(1, currtime);
+			}
 		}
 		
 		if(bu.intersects(info)){
@@ -133,7 +147,9 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 	public void draw(Graphics2D g) {
 		g.clearRect(0, 0, 1000, 1000);																					//
 		g.drawImage(bg,0,0,null);																						//Dette gjør først hele skjermen "blank" så tegner den bakrunden, så tegner den Busthus
-		g.drawImage(Main.Maeng.getImage(), Math.round(Main.Maeng.getX()), Math.round(Main.Maeng.getY()), null);			//
+		if(!Main.Maeng.dead){
+			g.drawImage(Main.Maeng.getImage(), Math.round(Main.Maeng.getX()), Math.round(Main.Maeng.getY()), null);			//
+		}
 		g.drawImage(Main.Busthus.getImage(), Math.round(Main.Busthus.getX()), Math.round(Main.Busthus.getY()), null);	//
 		g.draw(info);
 		Color c = g.getColor();
@@ -171,7 +187,7 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 			g.drawImage(Main.eheart, 42, 30, null);
 			this.g.curr = "gameover";
 		}
-		g.drawString(Main.version + "  Screen: " + this.g.s.getWidth() + " x " + this.g.s.getHeight()+"    Lives:"  + Main.Busthus.getHealt(), 10, 20);						//														//
+		g.drawString(Main.version, 10, 20);						//														//
 		g.dispose();																									//
 
 		
