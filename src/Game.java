@@ -17,7 +17,7 @@ public class Game extends Core implements KeyListener{
 		super();
 		m = new Main();
 	}
-	
+
 	//set full screen
 	public void init(){							//Denne blir kjørt fra core
 		super.init();							//kjører init i core
