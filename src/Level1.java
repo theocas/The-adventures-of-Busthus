@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 
+
 public class Level1 implements Runnable{ //gjør så den bygger på classen Core. og gjør så den kan kan kjøres  med run()
 	Main m; //for å slippe å skrive main.
 	Game g;
@@ -22,7 +23,7 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 		Rectangle bu = new Rectangle(Main.Busthus.getX(),Main.Busthus.getY(),Main.Busthus.getWidth(),Main.Busthus.getHeight());
 		Rectangle ma = new Rectangle(Main.Maeng.getX(), Main.Maeng.getY(),Main.Maeng.getWidth(),Main.Maeng.getHeight());
 		
-		if(ma.intersects(bu) && !Main.Maeng.dead && currtime-Main.Busthus.deadtime>2000){
+		if(ma.intersects(bu) && !Main.Maeng.dead && currtime-Main.Busthus.deadtime>2000 && !Main.debug){
 				if(Main.Busthus.attacking && g.left && Main.Maeng.getX() < Main.Busthus.getX()){
 					Main.Maeng.loseHealt(2, currtime);
 					Main.Maeng.setX(Main.Maeng.getX() - 30);
@@ -144,7 +145,7 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 	public void draw(Graphics2D g) {
 		g.clearRect(0, 0, 1000, 1000);																					//
 		g.drawImage(bg,0,0,null);																						//Dette gjør først hele skjermen "blank" så tegner den bakrunden, så tegner den Busthus
-		if(!Main.Maeng.dead){
+		if(!Main.Maeng.dead && !Main.debug){
 			g.drawImage(Main.Maeng.getImage(), Math.round(Main.Maeng.getX()), Math.round(Main.Maeng.getY()), null);			//
 		}
 		g.drawImage(Main.Busthus.getImage(), Math.round(Main.Busthus.getX()), Math.round(Main.Busthus.getY()), null);	//
