@@ -22,77 +22,74 @@ public class Level1 implements Runnable{ //gjør så den bygger på classen Core. o
 		Rectangle bu = new Rectangle(Main.Busthus.getX(),Main.Busthus.getY(),Main.Busthus.getWidth(),Main.Busthus.getHeight());
 		Rectangle ma = new Rectangle(Main.Maeng.getX(), Main.Maeng.getY(),Main.Maeng.getWidth(),Main.Maeng.getHeight());
 		
-		if(ma.intersects(bu)){
-			
-			if(!Main.Maeng.dead){
-				if( currtime-Main.Busthus.deadtime>2000){
-					if(Main.Busthus.attacking && g.left && Main.Maeng.getX() < Main.Busthus.getX()){
+		if(ma.intersects(bu) && !Main.Maeng.dead && currtime-Main.Busthus.deadtime>2000){
+				if(Main.Busthus.attacking && g.left && Main.Maeng.getX() < Main.Busthus.getX()){
+					Main.Maeng.loseHealt(2, currtime);
+					Main.Maeng.setX(Main.Maeng.getX() - 30);
+				}else if(Main.Busthus.attacking && g.right && Main.Maeng.getX() > Main.Busthus.getX()){
+					Main.Maeng.loseHealt(2, currtime);
+					Main.Maeng.setX(Main.Maeng.getX() + 30);
+				}else if(Main.Busthus.attacking && g.up && Main.Maeng.getY() < Main.Busthus.getY()){
+					Main.Maeng.loseHealt(2, currtime);
+					Main.Maeng.setY(Main.Maeng.getY() - 30);
+				}else if(Main.Busthus.getMoving()){
+					
+					if(g.down && Main.Maeng.getY() > Main.Busthus.getY()){
 						Main.Maeng.loseHealt(2, currtime);
-						Main.Maeng.setX(Main.Maeng.getX() - 30);
-					}else if(Main.Busthus.attacking && g.right && Main.Maeng.getX() > Main.Busthus.getX()){
-						Main.Maeng.loseHealt(2, currtime);
-						Main.Maeng.setX(Main.Maeng.getX() + 30);
-					}else if(Main.Busthus.attacking && g.up && Main.Maeng.getY() < Main.Busthus.getY()){
-						Main.Maeng.loseHealt(2, currtime);
-						Main.Maeng.setY(Main.Maeng.getY() - 30);
-					}else if(Main.Busthus.getMoving()){
-						
-						if(g.down && Main.Maeng.getY() > Main.Busthus.getY()){
-							Main.Maeng.loseHealt(2, currtime);
-							Main.Maeng.setY(Main.Maeng.getY() + 30);
-						}else if(g.down){
-							Main.Busthus.setY(Main.Busthus.getY()-25);
-						}else if(g.up){
-							Main.Busthus.setY(Main.Busthus.getY()+25);
-						}else if(g.left){
-							Main.Busthus.setX(Main.Busthus.getX()+25);
-						}else{
-							Main.Busthus.setX(Main.Busthus.getX()-25);
-						}
-						
+						Main.Maeng.setY(Main.Maeng.getY() + 30);
+					}else if(g.down){
+						Main.Busthus.setY(Main.Busthus.getY()-25);
+					}else if(g.up){
+						Main.Busthus.setY(Main.Busthus.getY()+25);
+					}else if(g.left){
+						Main.Busthus.setX(Main.Busthus.getX()+25);
 					}else{
-						
-						int EX = Main.Maeng.getX();
-						int EY = Main.Maeng.getY();
-						int CX = Main.Busthus.getX();
-						int CY = Main.Busthus.getY();
-						int DX;
-						int DY;
-						
-						if(EX>CX){
-							DX = EX - CX;
-						}else{
-							DX = CX - EX;
-						}
-						if(EY>CY){
-							DY = EY - CY;
-						}else{
-							DY = CY - EY;
-						}
-						
-						 if(DX>DY){
-							 
-							 if(EX>CX){
-								 Main.Busthus.setX(Main.Busthus.getX()-25);
-							 }else{
-								 Main.Busthus.setX(Main.Busthus.getX()+25);
-							 }
-							 
-						 }else{
-							 
-							 if(EY>CY){
-								 Main.Busthus.setY(Main.Busthus.getY()-25);
-							 }else{
-								 Main.Busthus.setY(Main.Busthus.getY()+25);
-							 }
-							 
-						 }
-						
+						Main.Busthus.setX(Main.Busthus.getX()-25);
 					}
+					
+				}else{
+					
+					int EX = Main.Maeng.getX();
+					int EY = Main.Maeng.getY();
+					int CX = Main.Busthus.getX();
+					int CY = Main.Busthus.getY();
+					int DX;
+					int DY;
+					
+					if(EX>CX){
+						DX = EX - CX;
+					}else{
+						DX = CX - EX;
+					}
+					if(EY>CY){
+						DY = EY - CY;
+					}else{
+						DY = CY - EY;
+					}
+					
+					 if(DX>DY){
+						 
+						 if(EX>CX){
+							 Main.Busthus.setX(Main.Busthus.getX()-25);
+						 }else{
+							 Main.Busthus.setX(Main.Busthus.getX()+25);
+						 }
+						 
+					 }else{
+						 
+						 if(EY>CY){
+							 Main.Busthus.setY(Main.Busthus.getY()-25);
+						 }else{
+							 Main.Busthus.setY(Main.Busthus.getY()+25);
+						 }
+						 
+					 }
+					
 				}
+				
 
 				Main.Busthus.loseHealt(1, currtime);
-			}
+			
 		}
 		
 		if(bu.intersects(info)){

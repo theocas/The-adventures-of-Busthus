@@ -272,11 +272,15 @@ public class Character {
 		
 	}
 	
-	public void toggleAttack(){
-		if(attacking == true){
-			attacking = false;
-		}else{
+	public void toggleAttackOn(){
+		if(attacking != true){
 			attacking = true;
+		}
+	}
+	
+	public void toggleAttackOff(){
+		if(attacking != false){
+			attacking = false;
 		}
 	}
 	
