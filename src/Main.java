@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 public class Main{//  implements KeyListener{ 	//Så du kan bruke tastaturet
 	static Level1 l1;	//l1==Level1(en classe)
 	static Menu menu;
-	public static String version = "The adventures of Busthus version: Alpha 1";
+	public static String version = "The adventures of Busthus version: 0016";
 	public static Character Busthus;
 	public static Character Maeng;
 	public boolean left = false;
@@ -25,6 +25,9 @@ public class Main{//  implements KeyListener{ 	//Så du kan bruke tastaturet
 	public static void main(String[] args){	//Her starter programmet
 		dstring += "[Main] starting game\n";
 		sm = new ScreenManager();
+		if(args.length > 0 && args[0] == "-debug"){
+			debug = true;
+		}
 		hheart = new ImageIcon(Main.class.getResource("images/halfheart.png")).getImage();
 		wheart = new ImageIcon(Main.class.getResource("images/wholeheart.png")).getImage();
 		eheart = new ImageIcon(Main.class.getResource("images/emptyheart.png")).getImage();

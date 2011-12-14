@@ -134,7 +134,7 @@ public class Game extends Core implements KeyListener{
 				}
 			}
 		}else if(keyCode == KeyEvent.VK_SPACE){
-			Main.Busthus.toggleAttack();
+			Main.Busthus.toggleAttackOn();
 		}
 		e.consume();
 	}
@@ -175,7 +175,7 @@ public class Game extends Core implements KeyListener{
 			}
 			
 		}else if(keyCode == KeyEvent.VK_SPACE){
-			Main.Busthus.toggleAttack();
+			Main.Busthus.toggleAttackOff();
 		}
 		e.consume();
 	}
